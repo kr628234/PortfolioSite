@@ -110,6 +110,13 @@ const PROJECTS = [
     desc: "A silly experiment where I tested the 3D capabilities of P5.JS.",
     tags: ["p5.js"]
   },
+  {
+    title: "Audio Degradation Demo",
+    type: "other",
+    video: "AudioDegradationDemo.mp4",
+    desc: "Demonstration of experimentation with the Decay object in MSP Max 8.",
+    tags: ["", ""]
+  }
 ];
 
 // ===== RENDER ================================================================
@@ -153,11 +160,20 @@ function card(project){
       ifr.src = project.embed;
       thumb.appendChild(ifr);
     }
-  } else {
+} else {
+  if (project.video) {
+    const vid = document.createElement('video');
+    vid.controls = true;
+    vid.width = 640; // optional, can be styled with CSS
+    vid.src = project.video;
+    thumb.appendChild(vid);
+  } else if (project.img) {
     const img = document.createElement('img');
-    img.src = project.img; img.alt = project.title;
+    img.src = project.img;
+    img.alt = project.title;
     thumb.appendChild(img);
   }
+}
 
   const body = document.createElement('div');
   body.className = 'body';
